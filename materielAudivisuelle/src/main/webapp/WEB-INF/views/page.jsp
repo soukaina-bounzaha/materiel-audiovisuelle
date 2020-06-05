@@ -65,6 +65,14 @@
 			<c:if test="${userClickContact == true}">
 				<%@include file="contact.jsp"%>
 			</c:if>
+			
+			
+			<!-- load only when user click AllEvenement or click CategoryEvenement -->
+
+			<c:if test="${userClickAllEvenement == true or userClickCategoryEvenement == true}">
+				<%@include file="ListEvenement.jsp"%>
+			</c:if>
+			
 
 		</div>
 

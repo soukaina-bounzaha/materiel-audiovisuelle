@@ -16,12 +16,15 @@
                     <li id="about">
                     <a href="${contextRoot}/about">About</a>
                     </li>
-                    <li id="ListPersonnels">
-                    <a href="${contextRoot}/ListPersonnels">Personnel</a>
-                    </li>
+                   
                     <li id="contact">
                     <a href="${contextRoot}/contact">Contact</a>
                     </li>
+                    
+                     <li id="ListdesEvenement">
+                    <a href="${contextRoot}/show/List/Evenement">List Evenement</a>
+                    </li>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

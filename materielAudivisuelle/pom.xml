@@ -8,7 +8,19 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>materielAudivisuelle Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<!-- version information -->
+	<properties>
+		<javaee.version>7.0</javaee.version>
+		<spring.version>4.3.6.RELEASE </spring.version>
+	</properties>
 	<dependencies>
+		<!-- Link backend project -->
+		<dependency>
+			<groupId>org.audio</groupId>
+			<artifactId>materielAudiovisuelleBackend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!-- JAVA EE -->
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
@@ -27,14 +39,14 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.3.6.RELEASE</version>
 		</dependency>
-		
+
 		<!-- dependency JSTL -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 	</dependencies>
 	<build>
 		<plugins>
