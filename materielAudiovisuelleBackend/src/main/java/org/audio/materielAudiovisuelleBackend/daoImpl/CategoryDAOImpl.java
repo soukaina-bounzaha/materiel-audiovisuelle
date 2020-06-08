@@ -1,69 +1,95 @@
 package org.audio.materielAudiovisuelleBackend.daoImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.audio.materielAudiovisuelleBackend.dao.ICategoryDAO;
 import org.audio.materielAudiovisuelleBackend.dto.Category;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;//make sure this is the rite import
 
-@Repository("categoryDAO")  //le meme nom dans autowired dans pageController
+@Repository("categoryDAO") // le meme nom dans autowired dans pageController
+@Transactional
 public class CategoryDAOImpl implements ICategoryDAO {
-	
-	private static List<Category> categories = new ArrayList<>();
-	
-	static {
-		 Category category = new Category();
-		 
-		 //ajouter la 1 category
-		 
-		category.setIdCategorie(1); 
-		category.setNomCategorie("TIRS");
-		category.setImageUrl("cat-1.png");
-		category.setDesigCat("gategorie de tirs ");
-		categories.add(category);
-		
-		category = new Category();
-		 
-		 //ajouter la 2 category
-		 
-		category.setIdCategorie(2); 
-		category.setNomCategorie("VISITES");
-		category.setImageUrl("cat-2.png");
-		category.setDesigCat("gategorie des visites ");
-		categories.add(category);
-		
-		category = new Category();
-		 
-		 //ajouter la 3 category
-		 
-		category.setIdCategorie(3); 
-		category.setNomCategorie("BORJS");
-		category.setImageUrl("cat-3.png");
-		category.setDesigCat("gategorie des borjs ");
-		categories.add(category);
-	
-	}
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	@Override
 	public List<Category> listCategorys() {
 		
-		return categories;
+		String SelectActiveCategory = "FROM Category WHERE active = :active";
+		Query query = sessionFactory.getCurrentSession().createQuery(SelectActiveCategory);
+		query.setParameter("active",true);
+
+		return query.getResultList();
 	}
+	/*
+	 * getting single category based on idCategorie
+	 */
 
 	@Override
 	public Category get(int idCategorie) {
-		 /* pour chaque category de la lise
-		  *  categories if id de cette category == id quon a passer on parametre 
-		  *  return la category sinon return null
-		  */
-		for(Category category : categories) {
-			
-			if(category.getIdCategorie() == idCategorie) return category ;
-		}
-		return null;
+
+		return sessionFactory.getCurrentSession().get(Category.class, Integer.valueOf(idCategorie));
 	}
-	
-	
+
+	@Override
+	public boolean add(Category category) {
+
+		try {
+
+			// add the category to the database
+			sessionFactory.getCurrentSession().persist(category);
+
+			return true;
+		}
+
+		catch (Exception ex) {
+
+			ex.printStackTrace();
+			return false;
+		}
+
+	}
+	/*
+	 * updating a single category 
+	 */
+
+	@Override
+	public boolean update(Category category) {
+		try {
+
+			// add the category to the database
+			sessionFactory.getCurrentSession().update(category);
+
+			return true;
+		}
+
+		catch (Exception ex) {
+
+			ex.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean delete(Category category) {
+		category.setActive(false);
+		try {
+
+			// call the method update
+			sessionFactory.getCurrentSession().update(category);
+
+			return true;
+		}
+
+		catch (Exception ex) {
+
+			ex.printStackTrace();
+			return false;
+		}
+	}
 
 }

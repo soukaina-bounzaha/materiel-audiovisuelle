@@ -17,6 +17,7 @@ $(function(){
 		break;
 		
 	default :
+		if(menu =="Home") break;
 		$('#ListdesEvenement').addClass('active');
 	    $('#a_'+menu).addClass('active');
 	
