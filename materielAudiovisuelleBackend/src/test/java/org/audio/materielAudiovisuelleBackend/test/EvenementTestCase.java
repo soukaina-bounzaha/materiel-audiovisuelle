@@ -2,6 +2,10 @@ package org.audio.materielAudiovisuelleBackend.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.audio.materielAudiovisuelleBackend.dao.IEvenementDAO;
 import org.audio.materielAudiovisuelleBackend.dto.Evenement;
 import org.junit.BeforeClass;
@@ -24,7 +28,7 @@ public class EvenementTestCase {
  		evenementDAO = (IEvenementDAO) context.getBean("evenementDAO");
  	}
      
-    /* @Test
+  /*  @Test
  	
  	public void testCRUDEvenement() {
  	    // add operation 
@@ -52,11 +56,29 @@ public class EvenementTestCase {
     	 
      }*/
      
+     @Test
+     public void TestListActiveEvenement(){
+    	 
+    	 assertEquals("something went wrong while fetching the list of events",
+				 5,evenementDAO.listActiveEvenement().size());
+     }
      
      
+     @Test
+     public void TestListActiveEvenementByCategory(){
      
+     assertEquals("something went wrong while fetching the list of events",
+			 2,evenementDAO.listActiveEvenementByCategory(1).size());
+     assertEquals("something went wrong while fetching the list of events",
+			 2,evenementDAO.listActiveEvenementByCategory(2).size());
+          }
+   
+     @Test
+     public void TestGetLatestActiveEvenement(){
      
+     assertEquals("something went wrong while fetching the list of events",
+			 3,evenementDAO.getlatestActiveEvenement(3).size());
      
-     
+}
      
 }

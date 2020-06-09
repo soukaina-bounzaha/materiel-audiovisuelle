@@ -25,5 +25,32 @@ $(function(){
 	
 	}
 	
+	//code for Jquery DataTable 
+	//create a dataset
+	
+	var evenement = [
+		
+		          ['1','lala'],
+		          ['2','dodo'],
+		          ['3','basla'],
+		          ['4','bzaf'],
+		          ['5','mais'],
+		          ['6','kanbghiha']
+		
+	];
+	
+	var $table = $('#EvenementListTable');
+	
+	//execute the below cde ony whene we have this table 
+	
+	if($table.length){
+		
+		//console.log('inside the table ');
+		
+		 $table.DataTable({
+			 data: evenement
+			 
+		 });
+	}
 	
 });

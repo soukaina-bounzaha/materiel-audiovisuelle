@@ -80,9 +80,14 @@
 		<%@include file="./shared/footer.jsp"%>
 		<!-- /.container -->
 
-		<!-- JavaScript -->
+		<!-- Jquery-->
 		<script src="${js}/jquery.js"></script>
+		
+		<!-- Bootstrap cre javascript-->
 		<script src="${js}/bootstrap.min.js"></script>
+		
+		<!-- Datatable plugin-->
+		<script src="${js}/jquery.dataTables.js"></script>
 
 		<!-- sel coded javascript -->
 
